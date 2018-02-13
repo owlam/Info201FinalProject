@@ -1,3 +1,4 @@
 # Info201FinalProject
 Info 201 Final Project 
-Members: Reksha Rathnam
+
+Members: Reksha Rathnam, Nicole Bohra, Anant Rajeev
