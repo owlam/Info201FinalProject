@@ -4,12 +4,7 @@ my.server <- function(input, output) {
   })
   
   output$table <- renderDataTable({
-    
     filter(us.data, us.data$Year >= input$range[1] & us.data$Year <= input$range[2]) %>%  
-    #x <- (input$range[1] - 1994) + 1
-    #y <- (input$range[2] - 1994) + 1
-   # us.table <- us.data[(x:y), ] %>% 
-      # filter(Year == c(input$range[1] < range : range > input$range[2])) %>% 
       select(Year,input$type) 
   })
   output$graph.info <- renderText({
