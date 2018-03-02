@@ -30,10 +30,12 @@ my.server <- function(input, output) {
   })
   
   output$map <- renderPlot({
-    state <- map_data("state", region = "Washington")
-    plot <- ggplot(data = state) +
-      geom_polygon(aes(x=long, y=lat, group=group))
-    print(plot)
+    counties <- map_data("county")
+    wa_county <- subset(counties, region == "washington")
+    state.with.counties <-ggplot(data = wa_county) +  
+      geom_polygon(aes(x = long, y = lat, group = group)) +  
+      coord_quickmap()
+    print(state.with.counties)
     
   })
 }
