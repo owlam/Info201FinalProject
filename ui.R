@@ -2,10 +2,10 @@ my.ui <- fluidPage(
   titlePanel(h2("Crime Data in the United States and Washington")),
   sidebarLayout(
     sidebarPanel(
-      selectInput("year", "Choose a year: ", c("Over 20 years",1994:2013)),
-      checkboxGroupInput("type", "Type of Crime", c("Murder", "Rape", "Robbery", "Aggravated", "Property", 
-                                                    "Burglary", "Larceny","Motor")),
-      sliderInput("range", "Threshold", 0, 1000, c(100,500), round = FALSE)
+      selectInput("year", "Choose a year: ", c(1994:2013)),
+      checkboxGroupInput("type", "Type of Crime", c("Murder", "Rape", "Robbery", "Aggravated Assault", "Property", 
+                                                    "Burglary", "Larceny","Motor Vehicle"), selected = selected.type),
+      sliderInput("range", "Range of Years", 1994, 2013,value = c(1994, 2013), sep = "")
     ),
     mainPanel(
       tabsetPanel(

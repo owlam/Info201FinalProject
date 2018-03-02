@@ -1,8 +1,10 @@
 # install.packages("shiny")
+#install.packages("ggplot2")
 
 library("shiny")
 library("dplyr")
 library("rsconnect")
+library("ggplot2")
 
 # UI and Server
 source("ui.R")
@@ -25,7 +27,8 @@ us.data <- us.data[, c(1:20)]
 us.data <- select(us.data, -Population, -V2, -Murder2, -Ra2, -Ro2, -A2, -P2, -B2, -L2, - M2)
 us.data <- us.data[c(4:23), ]
 
-finds.percent <- function()
+selected.type <- colnames(us.data[3])
 
 # creates the app displaying data 
 shinyApp(ui = my.ui, server = my.server)
+
