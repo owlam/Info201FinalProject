@@ -10,6 +10,18 @@ my.server <- function(input, output) {
   output$graph.info <- renderText({
     print("This graph shows the trend of crimes over 20 years or ...")
   })
+  output$trend.graph <- renderPlot({
+    trend <- ggplot(us.data, aes(x = Year, y = us.data$Violent, group = 1)) +
+      geom_line(color = "blue") +
+      geom_point(size=3)
+    print(trend)
+    
+    murder <- ggplot(us.data, aes(x = Year, y = us.data$Murder, group = 1)) +
+      geom_line(color = "green") +
+      geom_point(size=3)
+    print(murder)
+    
+  })
   
   output$wash.graph.info <- renderText({
     print("This graph shows...")

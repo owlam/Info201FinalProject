@@ -15,7 +15,7 @@ wash.data <- read.csv("washingtonData.csv", stringsAsFactors = FALSE)
 colnames(wash.data) <- c("City", "Population", "Violent", "Murder", "Rape", "Rape2", "Robbery", "Aggravated Assault",
                          "Property", "Burglary", "Larceny", "Motor Vehicle", "Arson")
 wash.data <- select(wash.data, -Population, -Violent, -Rape2, -Arson) 
-wash.data <- wash.data[c(5:186), ]
+wash.data <- wash.data[c(5:186), ] 
 wash.data <- wash.data[ ,c(1:9)]
 
 # Reading in and cleaning US data
