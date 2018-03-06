@@ -3,8 +3,7 @@ my.ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       selectInput("year", "Choose a year: ", c(1994:2013)),
-      checkboxGroupInput("type", "Type of Crime", c("Murder", "Rape", "Robbery", "Aggravated Assault", "Property", 
-                                                    "Burglary", "Larceny","Motor Vehicle"), selected = selected.type),
+      radioButtons("type", "Type of Crime", widget.names, selected = selected.type),
       sliderInput("range", "Range of Years", 1994, 2013,value = c(1994, 2013), sep = "")
     ),
     mainPanel(
@@ -17,9 +16,13 @@ my.ui <- fluidPage(
                             dataTableOutput("table")),
                    tabPanel("Graph",
                             textOutput("graph.info"),
-                            plotOutput("trend.graph"),
-                            plotOutput("bar.graph"))
-                 )
+                            plotlyOutput("trend.crimeGraph"))
+                            # p("Crime Type:", strong(textOutput('selected', inline = TRUE))),
+                            # p("Year:", strong(textOutput('selected', inline = TRUE))),
+                            # p("Number of cases:" , strong(textOutput('selected', inline = TRUE))))
+                            
+                 
+                   )
         ),
         tabPanel("Washington",
                  tabsetPanel(
@@ -33,5 +36,8 @@ my.ui <- fluidPage(
         )
       )
     )
+      )
   )
-)
+
+
+
