@@ -2,10 +2,9 @@ my.ui <- fluidPage(
   titlePanel(h2("Crime Data in the United States and Washington")),
   sidebarLayout(
     sidebarPanel(
-      selectInput("year", "Choose a year: ", c(1994:2013)),
-      checkboxGroupInput("type", "Type of Crime", c("Murder", "Rape", "Robbery", "Aggravated Assault", "Property", 
-                                                    "Burglary", "Larceny","Motor Vehicle"), selected = selected.type),
-      sliderInput("range", "Range of Years", 1994, 2013,value = c(1994, 2013), sep = "")
+      checkboxGroupInput("type", "Select the type of crime:", c("Murder", "Rape", "Robbery", "Aggravated Assault", "Property Crime", 
+                                                    "Burglary", "Larceny","Motor Vehicle Theft")),
+      sliderInput("range", "Select the range of years:", 1994, 2013,value = c(1994, 2013), sep = "")
     ),
     mainPanel(
       tabsetPanel(
@@ -25,7 +24,7 @@ my.ui <- fluidPage(
                  tabsetPanel(
                    tabPanel("Graph",
                             textOutput("wash.graph.info"),
-                            plotOutput("graph")),
+                            plotlyOutput("graph")),
                    tabPanel("Map",
                             textOutput("map.info"),
                             plotOutput("map"))
@@ -34,4 +33,4 @@ my.ui <- fluidPage(
       )
     )
   )
-)
+
