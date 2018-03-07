@@ -1,4 +1,23 @@
 my.server <- function(input, output) {
+  find.sum <- function(column) {
+    column <- as.numeric(gsub(",", "", as.character(column)))
+    column <- as.numeric(column)
+    return(column)
+  }
+  data.type <- c("Violent Crime","Rape","Robbery","Aggravated Assault","Property Crime","Burglary","Larceny","Motor Vehicle Theft")
+  sum <- c(sum(find.sum(wash.data$`Violent Crime`)),
+           sum(find.sum(totalRape)),
+           sum(find.sum(wash.data$Robbery)),
+           sum(find.sum(wash.data$`Aggravated Assault`)),
+           sum(find.sum(wash.data$`Property Crime`)),
+           sum(find.sum(wash.data$Burglary)),
+           sum(find.sum(wash.data$Larceny)),
+           sum(find.sum(wash.data$`Motor Vehicle Theft`))
+  )
+  data.sum <- data.frame(data.type, sum)
+  total <- sum(sum)
+  row.names(data.sum) <- data.type
+  
   output$table.info <- renderText({
     print("This table shows...")
   })
@@ -11,27 +30,24 @@ my.server <- function(input, output) {
     print("This graph shows the trend of crimes over 20 years or ...")
   })
   output$trend.graph <- renderPlot({
-    trend <- ggplot(us.data, aes(x = Year, y = us.data$Violent, group = 1)) +
-      geom_line(color = "blue") +
-      geom_point(size=3)
-    print(trend)
-    
-    murder <- ggplot(us.data, aes(x = Year, y = us.data$Murder, group = 1)) +
-      geom_line(color = "green") +
-      geom_point(size=3)
-    print(murder)
-    
+    trend <- ggplot(us.data) 
   })
   
   output$wash.graph.info <- renderText({
     print("This graph shows...")
   })
   
-  #output$bar.graph <- renderPlot({
-    #g <- ggplot(dfname, aes(category))
-   # g + geom_bar()
-  #})
+  output$graph <- renderPlotly({
+    p <- plot_ly(
+      data.sum, type = "bar", x = data.type, y = sum,
+      color = data.type 
+    ) %>% 
+      layout(
+        title = "Number of Crime Cases in Washington State in 2013"
+      )
+  })
   
+  #creates map text
   output$map.info <- renderText({
     print("This map shows...")  
   })
