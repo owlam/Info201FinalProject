@@ -27,7 +27,7 @@ us.data <- read.csv("USData.csv", stringsAsFactors = FALSE)
 colnames(us.data) <- c("Year", "Population", "Violent", "V2", "Murder", "Murder2", "Rape", "Ra2",
                        "Robbery", "Ro2", "Aggravated_Assault", "A2", "Property", "P2", "Burglary", "B2", 
                        "Larceny", "L2", "Motor_Vehicle", "M2")
-widget.names <- c(colnames(us.data[3:10]))
+widget.names <- c("Murder", "Rape", "Robbery", "Aggravated_Assault", "Property", "Burglary", "Larceny", "Motor_Vehicle")
 us.data <- us.data[, c(1:20)]
 us.data <- select(us.data, -Population, -V2, -Murder2, -Ra2, -Ro2, -A2, -P2, -B2, -L2, - M2)
 us.data <- us.data[c(4:23), ]

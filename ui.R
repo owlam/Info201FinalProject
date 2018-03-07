@@ -15,8 +15,8 @@ my.ui <- fluidPage(
                             textOutput("table.info"),
                             dataTableOutput("table")),
                    tabPanel("Graph",
-                            textOutput("graph.info"),
-                            plotlyOutput("trend.crimeGraph"))
+                            plotlyOutput("trend.crimeGraph"),
+                            textOutput("graph.info"))
                             # p("Crime Type:", strong(textOutput('selected', inline = TRUE))),
                             # p("Year:", strong(textOutput('selected', inline = TRUE))),
                             # p("Number of cases:" , strong(textOutput('selected', inline = TRUE))))
