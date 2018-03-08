@@ -1,3 +1,146 @@
+library(rsconnect)
+library('shinythemes')
+library("shiny")
+library("dplyr")
+library("rsconnect")
+library("ggplot2")
+library("tidyr")
+library("plotly")
+library("maps")
+
+ # Reading in and cleaning washington data
+
+wash.data <- read.csv("washingtonData.csv", stringsAsFactors = FALSE)
+colnames(wash.data) <- c("City", "Population", "Violent", "Murder", "Rape", "Rape2", "Robbery", "Aggravated_Assault",
+                         "Property", "Burglary", "Larceny", "Motor_Vehicle", "Arson")
+wash.data <- select(wash.data, -Population, -Violent, -Rape2, -Arson) 
+wash.data <- wash.data[c(5:186), ]
+wash.data <- wash.data[ ,c(1:9)]
+
+#Rape data was missing during clean up, manually putting in 
+wash.data$Rape[5] <- 3
+wash.data$Rape[10] <- 20
+wash.data$Rape[20] <- 37
+wash.data$Rape[40] <- 6
+wash.data$Rape[47] <- 10
+wash.data$Rape[52] <- 42
+wash.data$Rape[65] <- 0
+wash.data$Rape[70] <- 5
+wash.data$Rape[85] <- 12
+wash.data$Rape[87] <- 3
+wash.data$Rape[88] <- 12
+wash.data$Rape[102] <- 4
+wash.data$Rape[103] <- 2
+wash.data$Rape[105] <- 3
+wash.data$Rape[138] <- 4
+wash.data$Rape[139] <- 36
+wash.data$Rape[145] <- 24
+wash.data$Rape[148] <- 166
+wash.data$Rape[149] <- 35
+wash.data$Rape[151] <- 2
+wash.data$Rape[153] <- 0
+wash.data$Rape[177] <- 8
+
+
+# Reading in and cleaning US data
+us.data <- read.csv("USData.csv", stringsAsFactors = FALSE)
+
+colnames(us.data) <- c("Year", "Population", "Violent", "V2", "Murder", "Murder2", "Rape", "Ra2",
+                       "Robbery", "Ro2", "Aggravated_Assault", "A2", "Property", "P2", "Burglary", "B2", 
+                       "Larceny", "L2", "Motor_Vehicle", "M2")
+widget.names <- c(colnames(us.data[3:10]))
+us.data <- us.data[, c(1:20)]
+us.data <- select(us.data, -Population, -V2, -Murder2, -Ra2, -Ro2, -A2, -P2, -B2, -L2, - M2)
+us.data <- us.data[c(4:23), ]
+
+# Converts Strings in columns to numeric values
+find.sum <- function(column) {
+  column <- as.numeric(gsub(",", "", as.character(column)))
+  column <- as.numeric(column)
+  return(column)
+}
+data.type <- c("Murder","Rape","Robbery","Aggravated_Assault","Property Crime","Burglary","Larceny","Motor_Vehicle")
+sum <- c(sum(find.sum(wash.data$Murder)),
+         sum(find.sum(wash.data$Rape)),
+         sum(find.sum(wash.data$Robbery)),
+         sum(find.sum(wash.data$Aggravated_Assault)),
+         sum(find.sum(wash.data$Property)),
+         sum(find.sum(wash.data$Burglary)),
+         sum(find.sum(wash.data$Larceny)),
+         sum(find.sum(wash.data$Motor_Vehicle))
+)
+data.sum <- data.frame(data.type, sum)
+total <- sum(sum)
+row.names(data.sum) <- data.type
+
+Data.long <- gather(us.data, 
+                    key = Crime,
+                    value = Cases, Murder, Rape, Robbery, Aggravated_Assault, Property, Burglary, Larceny, Motor_Vehicle)
+Data.long$Cases <- find.sum(Data.long$Cases)
+
+#Reading in highschool dropout rate data
+HS.dropout.data <- read.csv("High_School_Dropout_Statistics_by_County_2012-2013.csv", stringsAsFactors = FALSE)
+
+#Reading in city to county data
+city.to.county.data <- read.csv("city_to_county_data - Sheet1.csv", stringsAsFactors = FALSE)
+
+#Read in population data
+population.data <- read.csv("Wa_county_population_data.csv", stringsAsFactors = FALSE)
+
+#join washington data to add counties
+wash.data.with.counties <- left_join(wash.data, city.to.county.data, by="City")
+
+#Reading in Median Income
+median.income <- read.csv("median_income_by_county - Sheet1.csv", stringsAsFactors = FALSE)
+
+#Gets county data by adding crime values in each city 
+Washington.crime.totals.by.county<- wash.data.with.counties %>% 
+  group_by(County) %>% 
+  summarise (Murder = sum(as.numeric(gsub(",","",Murder))),
+             Rape = sum(as.numeric(gsub(",","",Rape))),
+             Robbery = sum(as.numeric(gsub(",","",Robbery))),
+             Aggravated_Assault = sum(as.numeric(gsub(",","",Aggravated_Assault))),
+             Property = sum(as.numeric(gsub(",","",Property))),
+             Burglary = sum(as.numeric(gsub(",","",Burglary))),
+             Larceny = sum(as.numeric(gsub(",","",Larceny))),
+             Motor_Vehicle = sum(as.numeric(gsub(",","",Motor_Vehicle)))
+  )
+
+HS.dropout.data <- select(HS.dropout.data, County, Cohort.Dropout.Rate)
+Data.for.dropout.and.county.plot <- left_join(Washington.crime.totals.by.county,HS.dropout.data, by= 'County')
+population.data$County <- trimws(population.data$County, which = "right")
+full.data <- left_join(Data.for.dropout.and.county.plot, population.data, by= "County")
+full.data <- left_join (full.data, median.income, by ="County")
+colnames(full.data)[5] <- "Aggravated_Assault"
+colnames(full.data)[9] <- "Motor_Vehicle"
+
+#Normalize the crime values by population
+full.data.normalized <- mutate(full.data, Murder = Murder/Total.population)
+full.data.normalized <- mutate(full.data.normalized, Rape = Rape/Total.population)
+full.data.normalized <- mutate(full.data.normalized, Robbery = Robbery/Total.population)
+full.data.normalized <- mutate(full.data.normalized, Aggravated_Assault = Aggravated_Assault/Total.population)
+full.data.normalized <- mutate(full.data.normalized, Property  = Property /Total.population)
+full.data.normalized <- mutate(full.data.normalized, Burglary =  Burglary/Total.population)
+full.data.normalized <- mutate(full.data.normalized, Larceny = Larceny/Total.population)
+full.data.normalized <- mutate(full.data.normalized, Motor_Vehicle = Motor_Vehicle/Total.population)
+
+#Data for SOC. tab #1 
+Soc.graphs.data <- gather(full.data.normalized, 
+                          key = Crime,
+                          value = Cases, Murder, Rape, Robbery, Aggravated_Assault, Property, Burglary, Larceny, Motor_Vehicle)
+
+#Making datafram for WA cloropleth map
+cloropleth.map.data <- gather(full.data, 
+                              key = Crime,
+                              value = Cases, Murder, Rape, Robbery, Aggravated_Assault, Property, Burglary, Larceny, Motor_Vehicle)
+counties <- map_data("county")
+wa_county <- subset(counties, region == "washington")
+cloropleth.map.data <- mutate(cloropleth.map.data, County = tolower(cloropleth.map.data$County))
+cloropleth.map.data <- left_join(cloropleth.map.data, wa_county, by =c('County' ='subregion'))
+
+
+##### Washington Graph Tab ####
+# This function converts strings in columns to integers
 my.server <- function(input, output) {
   filtered <- reactive({
     data <- Data.long %>% 
@@ -12,29 +155,7 @@ my.server <- function(input, output) {
   })
   t <- list(
     color = 'white')
-  
-  
-  ##### Washington Graph Tab ####
-  # This function converts strings in columns to integers
-  find.sum <- function(column) {
-    column <- as.numeric(gsub(",", "", as.character(column)))
-    column <- as.numeric(column)
-    return(column)
-  }
-  data.type <- c("Murder","Rape","Robbery","Aggravated Assault","Property Crime","Burglary","Larceny","Motor Vehicle Theft")
-  sum <- c(sum(find.sum(wash.data$Murder)),
-           sum(find.sum(wash.data$Rape)),
-           sum(find.sum(wash.data$Robbery)),
-           sum(find.sum(wash.data$`Aggravated Assault`)),
-           sum(find.sum(wash.data$Property)),
-           sum(find.sum(wash.data$Burglary)),
-           sum(find.sum(wash.data$Larceny)),
-           sum(find.sum(wash.data$`Motor Vehicle`))
-  )
-  data.sum <- data.frame(data.type, sum)
-  total <- sum(sum)
-  row.names(data.sum) <- data.type
-  
+
   # Creates Washington Bar Graph
   output$graph <- renderPlotly({
     p <- plot_ly(
@@ -57,7 +178,6 @@ my.server <- function(input, output) {
           users to have the most comfortable user experience they can by only viewing the data that 
           pertains to them and interests them the most. ")
   })
-  
   
   output$table <- renderDataTable({
     filter(us.data, us.data$Year >= input$range[1] & us.data$Year <= input$range[2]) %>%  
@@ -150,7 +270,6 @@ my.server <- function(input, output) {
           from 0 to 20% the crime rate also increases.")
   })
   
-  
   #Median Household Income
   output$household.income <- renderPlotly ({
     p <- plot_ly(data = filtered2(), x = ~Median.Income, 
@@ -164,6 +283,7 @@ my.server <- function(input, output) {
              paper_bgcolor= 'transparent', plot_bgcolor= 'transparent', font= t)
     return(p)
   })
+  
   #Income paragraph
   output$income.paragraph <- renderText({
     print(paste("Another factor we predicted has a correlation with crime is the median income for each county. 
@@ -205,8 +325,7 @@ my.server <- function(input, output) {
           in Washington observe the most or least amount of crimes.")  
     
   })
-  #location <- filter(cloropleth.map.data, lat == cloropleth.map.data[1, 14])
-  
+
   d <- reactiveValues()
   d$selected.class <- ""
   output$selected <- renderText({

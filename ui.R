@@ -1,10 +1,15 @@
+library("plotly")
+library("shiny")
+library("dplyr")
+library("maps")
+
 my.ui <- fluidPage(
-  theme = shinythemes::shinytheme('darkly'),
+  theme= shinythemes::shinytheme('darkly'),
   titlePanel(h2("Crime Data in the United States and Washington")),
   sidebarLayout(
     sidebarPanel(
       radioButtons("type", "Type of Crime", c("Murder", "Rape", "Robbery", "Aggravated_Assault", 
-                                              "Burglary", "Larceny","Motor_Vehicle"), selected = colnames(us.data[3])),
+                                              "Burglary", "Larceny","Motor_Vehicle")),
       sliderInput("range", "Range of Years", 1994, 2013,value = c(1994, 2013), sep = "")
     ),
     mainPanel(
