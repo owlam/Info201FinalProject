@@ -3,7 +3,7 @@ my.ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       checkboxGroupInput("type", "Select the type of crime:", c("Violent Crime", "Rape", "Robbery", "Aggravated Assault", "Property Crime", 
-                                                    "Burglary", "Larceny","Motor Vehicle Theft"), selected = selected.type),
+                                                    "Burglary", "Larceny","Motor Vehicle Theft"), selected = selected.type)),
       sliderInput("range", "Select the range of years:", 1994, 2013,value = c(1994, 2013), sep = "")
     ),
     mainPanel(

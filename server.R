@@ -6,7 +6,7 @@ my.server <- function(input, output) {
   }
   data.type <- c("Violent Crime","Rape","Robbery","Aggravated Assault","Property Crime","Burglary","Larceny","Motor Vehicle Theft")
   sum <- c(sum(find.sum(wash.data$`Violent Crime`)),
-           sum(find.sum(totalRape)),
+           sum(find.sum(wash.data$Rape)),
            sum(find.sum(wash.data$Robbery)),
            sum(find.sum(wash.data$`Aggravated Assault`)),
            sum(find.sum(wash.data$`Property Crime`)),

@@ -12,10 +12,6 @@ library("reshape2")
 library("plotly")
 
 
-# UI and Server
-source("ui.R")
-source("server.R")
-
 # Reading in and cleaning washington data
 wash.data <- read.csv("washingtonData.csv", stringsAsFactors = FALSE)
 colnames(wash.data) <- c("City", "Population", "Violent Crime", "Murder", "Rape", "Rape2", "Robbery", "Aggravated Assault",
@@ -32,6 +28,9 @@ colnames(us.data) <- c("Year", "Population", "Violent Crime", "V2", "Murder", "M
 us.data <- us.data[, c(1:20)]
 us.data <- select(us.data, -Population, -V2, -Murder2, -Ra2, -Ro2, -A2, -P2, -B2, -L2, - M2)
 us.data <- us.data[c(4:23), ]
+
+source("ui.R")
+source("server.R")
 
 selected.type <- colnames(us.data[3])
 
