@@ -22,7 +22,7 @@ my.ui <- fluidPage(
                             # p("Number of cases:" , strong(textOutput('selected', inline = TRUE))))
                             
                  
-                   )
+                   ) 
         ),
         tabPanel("Washington",
                  tabsetPanel(

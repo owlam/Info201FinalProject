@@ -28,7 +28,7 @@ my.server <- function(input, output) {
       layout(title = paste0(input$type, " case rates in the United States"), margin = 200)
     return(p)
     })
-  # Changed part for final 
+  # Changed part for final  
   output$graph.info <- renderText({
     paste0("The graph shows the trend of various crimes committed over 
           the past 20 years in the United States. The graph representing 

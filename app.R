@@ -35,7 +35,7 @@ us.data <- us.data[c(4:23), ]
 selected.type <- colnames(us.data[3])
 
 Data.long <- gather(us.data, 
-                    key = Crime,
+                    key = Crime, 
                     value = Cases, Murder, Rape, Robbery, Aggravated_Assault, Property, Burglary, Larceny, Motor_Vehicle)
 
 # creates the app displaying data 
