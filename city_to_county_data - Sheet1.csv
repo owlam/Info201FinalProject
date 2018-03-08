@@ -1,0 +1,275 @@
+City,County
+Othello,Adams
+Ritzville,Adams
+Asotin,Asotin
+Clarkston,Asotin
+Benton City,Benton
+Kennewick,Benton
+Prosser,Benton
+Richland,Benton
+West Richland,Benton
+Cashmere,Chelan
+Chelan,Chelan
+Leavenworth,Chelan
+Wenatchee,Chelan
+Forks,Clallam
+La Push,Clallam
+Neah Bay,Clallam
+Port Angeles,Clallam
+Sequim,Clallam
+Battle Ground,Clark
+Camas,Clark
+Ridgefield,Clark
+Vancouver,Clark
+Washougal,Clark
+Yacolt,Clark
+Dayton,Columbia
+Castle Rock,Cowlitz
+Kalama,Cowlitz
+Kelso,Cowlitz
+Longview,Cowlitz
+Woodland,Cowlitz
+Bridgeport,Douglas
+East Wenatchee,Douglas
+Rock Island,Douglas
+Rockwood,Douglas
+Waterville,Douglas
+Barstow,Ferry
+Republic,Ferry
+Connell,Franklin
+Kahlotus,Franklin
+Pasco,Franklin
+Pomeroy,Garfield
+Coulee City,Grant
+Electric City,Grant
+Ephrata,Grant
+George,Grant
+Grand Coulee,Grant
+Mattawa,Grant
+Moses Lake,Grant
+Quincy,Grant
+Royal City,Grant
+Soap Lake,Grant
+Warden,Grant
+Aberdeen,Grays Harbor
+Cosmopolis,Grays Harbor
+Elma,Grays Harbor
+Hoquiam,Grays Harbor
+McCleary,Grays Harbor
+Montesano,Grays Harbor
+Oakville,Grays Harbor
+Ocean Shores,Grays Harbor
+Taholah,Grays Harbor
+Westport,Grays Harbor
+Camano Island,Island
+Coupeville,Island
+Langley,Island
+Oak Harbor,Island
+Port Townsend,Jefferson
+Algona,King
+Auburn,King
+Aukeen,King
+Bellevue,King
+Black Diamond,King
+Bothell,King
+Burien,King
+Carnation,King
+Clyde Hill,King
+Des Moines,King
+Duvall,King
+Enumclaw,King
+Federal Way,King
+Hunts Point,King
+Issaquah,King
+Kent,King
+Kirkland,King
+Lake Forest Park,King
+Maple Valley,King
+Medina,King
+Mercer Island,King
+Normandy Park,King
+North Bend,King
+Pacific,King
+Redmond,King
+Renton,King
+SeaTac,King
+Seattle,King
+Shoreline,King
+Skykomish,King
+Snoqualmie,King
+Tukwila,King
+Vashon Island,King
+Woodinville,King
+Yarrow Point,King
+Bainbridge Island,Kitsap
+Bremerton,Kitsap
+Kingston,Kitsap
+Port Orchard,Kitsap
+Poulsbo,Kitsap
+Rollingbay,Kitsap
+Silverdale,Kitsap
+Suquamish,Kitsap
+Cle Elum,Kittitas
+Ellensburg,Kittitas
+Kittitas,Kittitas
+Roslyn,Kittitas
+Bingen,Klickitat
+Goldendale,Klickitat
+White Salmon,Klickitat
+Centralia,Lewis
+Chehalis,Lewis
+Morton,Lewis
+Mossyrock,Lewis
+Napavine,Lewis
+Pe Ell,Lewis
+Toledo,Lewis
+Vader,Lewis
+Winlock,Lewis
+Almira,Lincoln
+Davenport,Lincoln
+Harrington,Lincoln
+Odessa,Lincoln
+Reardan,Lincoln
+Sprague,Lincoln
+Wilbur,Lincoln
+Shelton,Mason
+Brewster,Okanogan
+Coulee Dam,Okanogan
+Elmer City,Okanogan
+Nespelem,Okanogan
+Okanogan,Okanogan
+Omak,Okanogan
+Oroville,Okanogan
+Pateros,Okanogan
+Riverside,Okanogan
+Tonasket,Okanogan
+Twisp,Okanogan
+Winthrop,Okanogan
+Ilwaco,Pacific
+Long Beach,Pacific
+Raymond,Pacific
+South Bend,Pacific
+Tokeland,Pacific
+Cusick,Pend Oreille
+Ione,Pend Oreille
+Metaline,Pend Oreille
+Metaline Falls,Pend Oreille
+Newport,Pend Oreille
+Usk,Pend Oreille
+Bonney Lake,Pierce
+Buckley,Pierce
+Carbonado,Pierce
+DuPont,Pierce
+Eatonville,Pierce
+Edgewood,Pierce
+Fife,Pierce
+Fircrest,Pierce
+Gig Harbor,Pierce
+Lakewood,Pierce
+Milton,Pierce
+Orting,Pierce
+Puyallup,Pierce
+Roy,Pierce
+Ruston,Pierce
+South Prairie,Pierce
+Steilacoom,Pierce
+Sumner,Pierce
+Tacoma,Pierce
+Wilkeson,Pierce
+Friday Harbor,San Juan
+Anacortes,Skagit
+Burlington,Skagit
+Concrete,Skagit
+LaConner,Skagit
+Mount Vernon,Skagit
+Sedro Woolley,Skagit
+North Bonneville,Skamania
+Stevenson,Skamania
+Arlington,Snohomish
+Brier,Snohomish
+Cascade,Snohomish
+Darrington,Snohomish
+Edmonds,Snohomish
+Everett,Snohomish
+Gold Bar,Snohomish
+Granite Falls,Snohomish
+Index,Snohomish
+Lake Stevens,Snohomish
+Lynnwood,Snohomish
+Marysville,Snohomish
+Mill Creek,Snohomish
+Monroe,Snohomish
+Mountlake Terrace,Snohomish
+Mukilteo,Snohomish
+Snohomish,Snohomish
+Stanwood,Snohomish
+Sultan,Snohomish
+Tulalip,Snohomish
+Woodway,Snohomish
+Airway Heights,Spokane
+Cheney,Spokane
+Deer Park,Spokane
+Medical Lake,Spokane
+Spokane,Spokane
+Chewelah,Stevens
+Colville,Stevens
+Kettle Falls,Stevens
+Northport,Stevens
+Springdale,Stevens
+Wellpinit,Stevens
+Bucoda,Thurston
+Lacey,Thurston
+Olympia,Thurston
+Rainier,Thurston
+Tenino,Thurston
+Tumwater,Thurston
+Yelm,Thurston
+Cathlamet,Wahkiakum
+College Place,Walla Walla
+Prescott,Walla Walla
+Waitsburg,Walla Walla
+Walla Walla,Walla Walla
+Bellingham,Whatcom
+Blaine,Whatcom
+Deming,Whatcom
+Everson,Whatcom
+Ferndale,Whatcom
+Lynden,Whatcom
+Nooksack,Whatcom
+Sumas,Whatcom
+Albion,Whitman
+Colfax,Whitman
+Colton,Whitman
+Garfield,Whitman
+Oaksdale,Whitman
+Palouse,Whitman
+Pullman,Whitman
+Rosalia,Whitman
+Tekoa,Whitman
+Uniontown,Whitman
+Grandview,Yakima
+Granger,Yakima
+Harrah,Yakima
+Mabton,Yakima
+Moxee City,Yakima
+Selah,Yakima
+Sunnyside,Yakima
+Toppenish,Yakima
+Union Gap,Yakima
+Wapato,Yakima
+Yakima,Yakima
+Zillah,Yakima
+Covington,King
+Dupont,Pierce
+Kenmore,King
+Liberty Lake,Spokane
+La Center,Clark
+Lacey3,Thurston
+Moxee,Yakima
+Newcastle,King
+Olympia3,Thurston
+Sammamish,King
+Spokane Valley,Spokane
+Tieton,Yakima
+Tumwater3,Thurston
+University Place,Pierce
