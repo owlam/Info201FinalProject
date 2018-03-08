@@ -1,0 +1,13 @@
+name: Info201FinalProject
+title: Info201FinalProject
+username:
+account: owlam
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 295660
+bundleId: 1258707
+url: https://owlam.shinyapps.io/Info201FinalProject/
+when: 1520497504.1201
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: First.two.hours.plot.png|LICENSE

@@ -4,7 +4,7 @@ my.ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       radioButtons("type", "Type of Crime", c("Murder", "Rape", "Robbery", "Aggravated_Assault", 
-                                              "Burglary", "Larceny","Motor_Vehicle")),
+                                              "Burglary", "Larceny","Motor_Vehicle"), selected = selected.type),
       sliderInput("range", "Range of Years", 1994, 2013,value = c(1994, 2013), sep = "")
     ),
     mainPanel(
@@ -13,8 +13,9 @@ my.ui <- fluidPage(
         tabPanel("Washington",
                  tabsetPanel(
                    tabPanel("Graph",
-                            textOutput("wash.graph.info"),
-                            plotlyOutput("graph")),
+                            plotlyOutput("graph"),
+                            textOutput("wash.graph.info")),
+                          
                    tabPanel("Map",
                             textOutput("map.info"),
                             plotOutput("map", hover= 'plot.hover'),

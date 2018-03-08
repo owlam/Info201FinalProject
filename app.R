@@ -128,6 +128,6 @@ cloropleth.map.data <- left_join(cloropleth.map.data, wa_county, by =c('County' 
 
 
 # creates the app displaying data 
-
+options(shiny.sanitize.errors= FALSE)
 shinyApp(ui = my.ui, server = my.server)
 

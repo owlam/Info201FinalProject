@@ -48,7 +48,14 @@ my.server <- function(input, output) {
   })
   
   output$table.info <- renderText({
-    print("This table shows...")
+    print("The graph here describes numerically the number of cases of different types 
+          of crimes that have been committed in the United States each year. By choosing a 
+          certain type of crime, users are able to see, at length, the number of cases pertaining 
+          to that crime that they chose to see. Furthermore, the second widget below the “crime type” 
+          selection allows users to pan through a certain timespan in years and choose exactly the years 
+          and its’ corresponding number of cases on the graph. The widgets included in this tab allow for 
+          users to have the most comfortable user experience they can by only viewing the data that 
+          pertains to them and interests them the most. ")
   })
   
   
@@ -56,8 +63,11 @@ my.server <- function(input, output) {
     filter(us.data, us.data$Year >= input$range[1] & us.data$Year <= input$range[2]) %>%  
       select(Year,input$type) 
   })
-  output$graph.info <- renderText({
-    print("This graph shows the trend of crimes over 20 years or ...")
+  output$wash.graph.info <- renderText({
+    print("This bar graph represents the total number of cases per crime 
+reported in Washington state across all counties in 2013. Hover over each bar 
+          to view the exact total number of cases reported. The types of crime cases include 
+          Murder, Rape, Aggravated Assault, Property Crime, Motor Vehicle Theft, Burglary, Larceny, and Robbery.")
   })
   
   #This graphs the crime rates in the united states, widgets change graph
@@ -170,35 +180,20 @@ my.server <- function(input, output) {
      print(paste("Write about age blah blah blah
                  Now testing the break"))
    })
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  output$wash.graph.info <- renderText({
-    print("This graph shows...")
-  })
-  
-  
-  output$map.info <- renderText({
-    print("This map shows...")  
-  })
-  
+ #Washington State Map Plot 
   output$map <- renderPlot({
     counties <- map_data("county")
     wa_county <- subset(counties, region == "washington")
     cloropleth.map.data <- filter(cloropleth.map.data, Crime == input$type)
     ggplot(data = cloropleth.map.data) +
       geom_polygon(aes(x = long, y = lat, group = group, fill= Cases))
+  })
+    output$map.info <- renderText({
+      print("This map represents the total amount of a specific crime in Washington state, 
+            containing the most recent data in the year 2013 by the FBI. Select a crime on the 
+            left to view the varying levels based on the chosen crime and find out which counties 
+            in Washington observe the most or least amount of crimes.")  
     
-
   })
 #location <- filter(cloropleth.map.data, lat == cloropleth.map.data[1, 14])
   
