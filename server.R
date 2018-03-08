@@ -120,8 +120,14 @@ reported in Washington state across all counties in 2013. Hover over each bar
 #### SOCIOECONOMIC CORRELATIONS TAB ####
   #Intro Paragraph
    output$soc.intro <- renderText({
-     print("Put in intro about correlations of other factors and crime")
+     print("When lookinga at crime data in the state of Washington, we can see that there is variation in crime rates
+           for each county? What factors account for this variation? For this analysis we looked at different socioeconomic
+           characteristics to see if there is a correlation between these factors and rates for different crimes. These 
+           factors include high school dropout rates for eaach county, median income, and median age.")
    })
+  output$break.1 <- renderText({
+    print(".df            ")
+  })
   
   #Highschool dropout rate
   output$high.school.dropout <- renderPlotly ({
@@ -131,7 +137,7 @@ reported in Washington state across all counties in 2013. Hover over each bar
                 line = list(color = 'rgba(7, 164, 181, 1)'),
                 name = "Loess Smoother") %>% 
       layout(title= paste0('Correlation of Highschool Dropout Rate Versus ', input$type, ' Rates'), 
-             xaxis = list(title ="High School Dropout Rate (2013)"),
+             xaxis = list(title ="High School Dropout Rate % (2013)"),
              yaxis = list(title = paste0(input$type, " Rates")), 
              paper_bgcolor= 'transparent', plot_bgcolor= 'transparent', font= t
              )
@@ -139,7 +145,9 @@ reported in Washington state across all counties in 2013. Hover over each bar
   })
   #Highschool paragraph
    output$high.school.paragraph <- renderText({
-     print("Pragraph about the highschool dropout")
+     print("Many studies argue that crime is linked to highschool dropout rates, and we wanted to see if this can be shown
+           by our data. Clicking to see different types of crimes on the graph, one can see that as the dropout rate increases
+           from 0 to 20% the crime rate also increases.")
    })
   
   
@@ -158,7 +166,8 @@ reported in Washington state across all counties in 2013. Hover over each bar
   })
   #Income paragraph
    output$income.paragraph <- renderText({
-     print(paste("Write about income blah blah blah"))
+     print(paste("Another factor we predicted has a correlation with crime is the median income for each county. 
+                 In this graph, we can see how different types of crimes correlate differently with median income."))
    })
 
   # Median Age of the county
@@ -169,7 +178,7 @@ reported in Washington state across all counties in 2013. Hover over each bar
                 line = list(color = 'rgb(0,255,255)'),
                 name = "Loess Smoother") %>% 
       layout(title= paste0('Correlation of Median Age Verus ', input$type, ' Rates'),
-             xaxis = list(title ="Median Household Income (2013)"),
+             xaxis = list(title ="Median Age (2013)"),
              yaxis = list(title = paste0(input$type, " Rates")), 
              paper_bgcolor= 'transparent', plot_bgcolor= 'transparent', font= t
     )
@@ -177,8 +186,8 @@ reported in Washington state across all counties in 2013. Hover over each bar
   })
   #Age paragraph
    output$age.paragraph <- renderText({
-     print(paste("Write about age blah blah blah
-                 Now testing the break"))
+     print(paste("Lastly, we wanted to see how the median age of a county is correlated to crime rates in that county. It is interesting
+                 to see that on this graph, once the median age exeeds 40, different types of crime rates start to fall."))
    })
  #Washington State Map Plot 
   output$map <- renderPlot({
@@ -189,6 +198,7 @@ reported in Washington state across all counties in 2013. Hover over each bar
       geom_polygon(aes(x = long, y = lat, group = group, fill= Cases))
   })
     output$map.info <- renderText({
+      
       print("This map represents the total amount of a specific crime in Washington state, 
             containing the most recent data in the year 2013 by the FBI. Select a crime on the 
             left to view the varying levels based on the chosen crime and find out which counties 
@@ -204,3 +214,22 @@ reported in Washington state across all counties in 2013. Hover over each bar
  })
   # long == input$plot.hover$x && lat == input$plot.hover$y
 }
+
+#Creating line breaks for ui to make reading easier
+
+
+# output$break.2 <- renderText({
+#   print(paste(" "))
+# })
+# output$break.3 <- renderText({
+#   print(paste(" "))
+# })
+# output$break.4 <- renderText({
+#   print(paste(" "))
+# })
+# output$break.5 <- renderText({
+#   print(paste(" "))
+# })
+# output$break.6 <- renderText({
+#   print(paste(" "))
+# })
