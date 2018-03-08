@@ -2,6 +2,7 @@
 #install.packages("ggplot2")
 # install.packages("plotly")
 install.packages("dpylr")
+install.packages("shinythemes")
 library("shiny")
 library("dplyr")
 library("rsconnect")
