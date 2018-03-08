@@ -2,9 +2,10 @@
 # install.packages("ggplot2")
 # install.packages("tidyr")
 # install.packages("plotly")
-# install.packages("shinythemes")
+#install.packages("shinythemes")
 
-library(shinythemes)
+library(rsconnect)
+library('shinythemes')
 library("shiny")
 library("dplyr")
 library("rsconnect")

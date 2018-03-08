@@ -13,21 +13,21 @@ my.ui <- fluidPage(
         tabPanel("Washington",
                  tabsetPanel(
                    tabPanel("Graph",
-                            plotlyOutput("graph"),
-                            textOutput("wash.graph.info")),
+                            shiny::plotlyOutput("graph"),
+                            shiny::textOutput("wash.graph.info")),
                           
                    tabPanel("Map",
-                            textOutput("map.info"),
-                            plotOutput("map", hover= 'plot.hover'),
+                            shiny::textOutput("map.info"),
+                            shiny::plotOutput("map", hover= 'plot.hover'),
                             p("Selected County: ",strong(textOutput('selected', inline = TRUE)))),
                    tabPanel("Socioeconomic Correlations",
-                            textOutput("soc.intro"),
-                            plotlyOutput("high.school.dropout"),
-                            textOutput("high.school.paragraph"),
-                            plotlyOutput("household.income"),
-                            textOutput("income.paragraph"),
-                            plotlyOutput("median.age"),
-                            textOutput("age.paragraph"))
+                            shiny::textOutput("soc.intro"),
+                            shiny::plotlyOutput("high.school.dropout"),
+                            shiny::textOutput("high.school.paragraph"),
+                            shiny::plotlyOutput("household.income"),
+                            shiny::textOutput("income.paragraph"),
+                            shiny::plotlyOutput("median.age"),
+                            shiny::textOutput("age.paragraph"))
                    
                    
                    
@@ -36,11 +36,11 @@ my.ui <- fluidPage(
         tabPanel("United States", 
                  tabsetPanel(
                    tabPanel("Graph",
-                            plotlyOutput("trend.crimeGraph"),
-                            textOutput("graph.info")),
+                            shiny::plotlyOutput("trend.crimeGraph"),
+                            shiny::textOutput("graph.info")),
                    tabPanel("Table",
-                            textOutput("table.info"),
-                            dataTableOutput("table"))
+                            shiny::textOutput("table.info"),
+                            shiny::dataTableOutput("table"))
                    
                    
                    
